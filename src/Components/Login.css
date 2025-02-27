@@ -1,0 +1,86 @@
+/* Center the login form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6f42c1, #8e44ad);
+  }
+  
+  /* Form box styling */
+  .login-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Dark mode support */
+  body.dark-theme .login-box {
+    background: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  /* Heading */
+  .login-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #6f42c1;
+  }
+  
+  /* Input fields */
+  .login-box .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .login-box label {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  body.dark-theme .login-box label {
+    color: #ddd;
+  }
+  
+  /* Input fields */
+  .login-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  body.dark-theme .login-box input {
+    background: #222;
+    color: white;
+    border: 1px solid #666;
+  }
+  
+  /* Login button */
+  .login-box .login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #6f42c1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .login-box .login-btn:hover {
+    background: #8e44ad;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 400px) {
+    .login-box {
+      width: 90%;
+    }
+  }
+  

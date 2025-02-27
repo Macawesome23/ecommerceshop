@@ -1,0 +1,25 @@
+{
+    "id": "12345",
+    "name": "Wireless Headphones",
+    "price": 59.99,
+    "currency": "USD",
+    "description": "Comfortable wireless headphones with noise cancellation.",
+    "imageUrl": "https://example.com/images/headphones.jpg",
+    "rating": 4.5,
+    "inStock": true,
+    "category": "electronics",
+    "details": {
+      "brand": "TechBrand",
+      "model": "X200",
+      "warranty": "1 year"
+    },
+    "similarProducts": [
+      {
+        "id": "54321",
+        "name": "Bluetooth Speaker",
+        "price": 39.99,
+        "imageUrl": "https://example.com/images/speaker.jpg"
+      }
+    ]
+  }
+  

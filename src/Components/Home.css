@@ -1,0 +1,30 @@
+.carousel-container{
+    width: 70%;
+    height: 400px; /* Example fixed height */
+    margin: 0 auto;
+    overflow: hidden; /* Ensures no content spills out */
+}
+
+.carousel img{
+    width: 100%;
+    height: auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column; /* Ensures the card is a vertical stack */
+    justify-content: space-between; /* Allows spacing between elements */
+    height: 100%; /* Ensures the card takes up consistent height */
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: space-between; /* Pushes the button to the bottom */
+    flex-grow: 1; /* Allows the body to stretch as needed */
+  }
+  
+  .btn-primary {
+    margin-top: auto; /* Ensures the button stays at the bottom */
+  }
+  

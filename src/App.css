@@ -1,0 +1,101 @@
+/* Default Light Mode */
+body {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f8f9fa;
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Dark Mode */
+body.dark-theme {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --btn-bg: #ffa500;
+  --btn-text: #000000;
+}
+
+/* App Styles */
+.App {
+  text-align: center;
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Search Bar */
+.search-bar {
+  width: 250px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-btn {
+  height: 35px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Default Light Mode */
+body {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-theme {
+  background-color: #121212;  /* Dark background */
+  color: #ffffff;  /* Light text */
+}
+
+/* Update Navbar for Dark Mode */
+.dark-theme .navbar {
+  background-color: #333 !important;
+}
+
+/* Style buttons and inputs */
+.dark-theme .btn {
+  background-color: #444;
+  color: white;
+  border: 1px solid white;
+}
+
+.dark-theme .btn:hover {
+  background-color: #666;
+}
+
+/* Search bar */
+.dark-theme input {
+  background-color: #222;
+  color: white;
+  border: 1px solid white;
+}
+

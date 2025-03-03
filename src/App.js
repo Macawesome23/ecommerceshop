@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home";
@@ -13,26 +14,23 @@ import SearchResults from "./Components/SearchResults";
 import NotFound from "./NotFound";
 import Profile from "./Components/Profile";
 import Cart from "./Components/Cart";
-import { CartProvider } from "./Components/CartContext"; // Import CartProvider
+import { CartProvider } from "./Components/CartContext";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
-  
+
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
   useEffect(() => {
-    // Apply or remove dark mode class
     if (darkMode) {
       document.body.classList.add("dark-theme");
     } else {
       document.body.classList.remove("dark-theme");
     }
-
-    // Store the preference in localStorage
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
@@ -49,40 +47,35 @@ export default function App() {
   return (
     <CartProvider>
       <Router>
-        <div className={`App ${darkMode ? "dark-theme" : ""}`}>
-          {" "}
-          {/* Ensure theme class is added */}
-          <Navbar
-           
-            darkMode={darkMode}
-            setDarkMode={setDarkMode}
-
-            isLoggedIn={isLoggedIn}
-            handleLogout={handleLogout}
-          />
-          <Routes>
-            
-            <Route
-              path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/login"
-              element={<Login handleLogin={handleLogin} />}
-            />
-            <Route
-              path="/profile"
-              element={isLoggedIn ? <Profile /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/cart"
-              element={isLoggedIn ? <Cart /> : <Navigate to="/login" />}
-            />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        <MainContent
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+        />
       </Router>
     </CartProvider>
+  );
+}
+
+function MainContent({ isLoggedIn, darkMode, setDarkMode, handleLogin, handleLogout }) {
+
+
+  return (
+    <div className={`App ${darkMode ? "dark-theme" : ""}`}>
+      {useLocation().pathname !=="/login" && (
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      )}
+      <Routes>
+        <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/cart" element={isLoggedIn ? <Cart /> : <Navigate to="/login" />} />
+        <Route path="/search" element={<SearchResults />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
 }

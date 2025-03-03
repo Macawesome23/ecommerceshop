@@ -1,13 +1,12 @@
 import React, { createContext, useState, useContext } from "react";
 
-// Create Cart Context
+
 const CartContext = createContext();
 
-// Cart Provider
+
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Function to Add Items to Cart
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -21,12 +20,12 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Function to Remove Items from Cart
+
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // Function to Clear the Cart
+  
   const clearCart = () => {
     setCart([]);
   };

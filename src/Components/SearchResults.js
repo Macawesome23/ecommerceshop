@@ -7,7 +7,7 @@ const SearchResults = () => {
   const { addToCart } = useCart();
   const location = useLocation();
 
-  
+
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("query") || "";
 

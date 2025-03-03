@@ -35,10 +35,10 @@ const Home = () => {
 
   return (
     <div className="container">
-      
+
       {/* Carousel Section */}
-      <div className="carousel-container" style={{ maxWidth: "90%", margin: "0 auto", height: "400px", marginBottom: "60px", marginTop:"64px"}}>
-        <Carousel showThumbs={false} autoPlay={true} transitionTime={300} infiniteLoop   showIndicators={false} showStatus={false}>
+      <div className="carousel-container" style={{ maxWidth: "90%", margin: "0 auto", height: "400px", marginBottom: "60px", marginTop: "64px" }}>
+        <Carousel showThumbs={false} autoPlay={true} transitionTime={300} infiniteLoop showIndicators={false} showStatus={false}>
           {images.map((image, index) => (
             <div key={index}>
               <img src={image.src} alt={`Slide ${index + 1}`} style={{ width: "100%", height: "400px", objectFit: "cover" }} />

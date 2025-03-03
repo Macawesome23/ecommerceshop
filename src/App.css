@@ -99,3 +99,49 @@ body.dark-theme {
   border: 1px solid white;
 }
 
+/* Navbar */
+.custom-navbar {
+  background-color: #6f42c1 !important;
+}
+
+/* Fix Spacing for Buttons */
+.btn-outline-light {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Dark Mode Animation */
+.dark-mode-toggle {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Search Bar Responsiveness */
+@media (max-width: 768px) {
+  .search-form {
+    display: flex;
+    width: 100%;
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    width: 100% !important;
+  }
+
+  .search-btn {
+    width: 50px;
+  }
+}
+
+/* Profile and Logout Button Adjustments */
+.profile-icon, .logout-btn, .login-btn {
+  font-size: 0.9rem;
+  padding: 8px 10px;
+}
+
+@media (max-width: 576px) {
+  .profile-icon, .logout-btn, .login-btn {
+    width: 100%;
+  }
+}
+

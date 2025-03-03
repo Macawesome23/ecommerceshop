@@ -9,10 +9,10 @@ const Login = ({ handleLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (email === "test@example.com" && password === "password") {
       localStorage.setItem("isLoggedIn", "true"); // Store login state
-      handleLogin(); 
+      handleLogin();
       navigate("/");
     } else {
       alert("Invalid email or password");

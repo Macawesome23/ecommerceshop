@@ -9,13 +9,15 @@ import {
   FaUser,
   FaSignOutAlt,
   FaSignInAlt,
-} from "react-icons/fa"; // Import icons
+  FaBars, // Hamburger Icon
+} from "react-icons/fa";
 
 const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
   const { cart } = useCart();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false); // State for mobile menu
 
   useEffect(() => {
     if (searchQuery.trim()) {
@@ -30,6 +32,10 @@ const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
     }
   };
 
+  const toggleNavbar = () => {
+    setIsNavbarOpen(!isNavbarOpen);
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -40,27 +46,25 @@ const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
           Shopify
         </Link>
 
+        {/* Mobile Menu Button */}
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={toggleNavbar}
         >
-          <span className="navbar-toggler-icon"></span>
+          <FaBars size={20} />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        {/* Navbar Items */}
+        <div className={`collapse navbar-collapse ${isNavbarOpen ? "show" : ""}`}>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <Link className="nav-link active" to="/" onClick={() => setIsNavbarOpen(false)}>
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/cart">
+              <Link className="nav-link" to="/cart" onClick={() => setIsNavbarOpen(false)}>
                 <FaShoppingCart size={20} /> ({cartCount})
               </Link>
             </li>
@@ -70,16 +74,13 @@ const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
           <button
             className="btn btn-outline-light mx-2 dark-mode-toggle"
             onClick={() => setDarkMode((prev) => !prev)}
-            aria-label={
-              darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
-            }
             style={{
               border: "none",
               background: "transparent",
               cursor: "pointer",
             }}
           >
-            {darkMode ? <FaSun size={22} /> : <FaMoon size={22} />}
+            {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
           </button>
 
           {/* Search Bar */}
@@ -99,7 +100,7 @@ const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
 
           {/* Profile Icon */}
           {isLoggedIn && (
-            <Link to="/profile" className="btn btn-outline-light ms-3">
+            <Link to="/profile" className="btn btn-outline-light ms-3" onClick={() => setIsNavbarOpen(false)}>
               <FaUser />
             </Link>
           )}
@@ -108,12 +109,15 @@ const Navbar = ({ darkMode, setDarkMode, isLoggedIn, handleLogout }) => {
           {isLoggedIn ? (
             <button
               className="btn btn-outline-light ms-3"
-              onClick={handleLogout}
+              onClick={() => {
+                handleLogout();
+                setIsNavbarOpen(false);
+              }}
             >
               <FaSignOutAlt /> Logout
             </button>
           ) : (
-            <Link to="/login" className="btn btn-outline-light ms-3">
+            <Link to="/login" className="btn btn-outline-light ms-3" onClick={() => setIsNavbarOpen(false)}>
               <FaSignInAlt /> Login
             </Link>
           )}

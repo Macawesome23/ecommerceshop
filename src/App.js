@@ -65,8 +65,8 @@ function MainContent({ isLoggedIn, darkMode, setDarkMode, handleLogin, handleLog
 
   return (
     <div className={`App ${darkMode ? "dark-theme" : ""}`}>
-      {useLocation().pathname !=="/login" && (
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      {useLocation().pathname.toLowerCase() !=="/login" && (
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
       )}
       <Routes>
         <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />

@@ -16,7 +16,7 @@ import Profile from "./Components/Profile";
 import Cart from "./Components/Cart";
 import { CartProvider } from "./Components/CartContext";
 
-export default function App() {
+const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
@@ -49,7 +49,6 @@ export default function App() {
       <Router>
         <MainContent
           isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
           darkMode={darkMode}
           setDarkMode={setDarkMode}
           handleLogin={handleLogin}
@@ -60,22 +59,63 @@ export default function App() {
   );
 }
 
-function MainContent({ isLoggedIn, darkMode, setDarkMode, handleLogin, handleLogout }) {
+const MainContent = ({ isLoggedIn, darkMode, setDarkMode, handleLogin, handleLogout }) => {
+ 
+  // Define a reusable wrapper for protected routes
+  const PrivateRoute = ({ children }) => {
+    return isLoggedIn ? children : <Navigate to="/login" />;
+  };
 
+  const location = useLocation();
+  
+  // Define which paths should show the navbar
+  const showNavbarPaths = ['/', '/profile', '/cart', '/search'];
+  const shouldShowNavbar = showNavbarPaths.includes(location.pathname);
 
   return (
     <div className={`App ${darkMode ? "dark-theme" : ""}`}>
-      {useLocation().pathname.toLowerCase() !=="/login" && (
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
+      {shouldShowNavbar && (
+        <Navbar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          isLoggedIn={isLoggedIn}
+          handleLogout={handleLogout}
+        />
       )}
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
-        <Route path="/cart" element={isLoggedIn ? <Cart /> : <Navigate to="/login" />} />
-        <Route path="/search" element={<SearchResults />} />
+        <Route path="/" element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>}
+          />
+        <Route path="/login" element={
+          <Login handleLogin={handleLogin}/>} 
+        />
+        <Route path="/profile" element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/cart" element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+
+        <Route path="/search" element={
+          <PrivateRoute>
+            <SearchResults />
+          </PrivateRoute>
+
+          } />
+
         <Route path="*" element={<NotFound />} />
+
       </Routes>
     </div>
   );
-}
+};
+
+export default App;

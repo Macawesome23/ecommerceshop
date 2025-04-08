@@ -1,5 +1,5 @@
 import React from "react";
-// import "./NotFound.css"; // Optional: Add custom styling
+
 
 const NotFound = () => {
   return (
